@@ -1,0 +1,60 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}Mansuy Jayson - Dev
+{% endblock %}
+
+{% block main %}
+
+	<section class="sectionPresentation">
+		<button type="button" class="btn-contacter btn" data-bs-toggle="modal" data-bs-target="#contactModal">
+			<h4>Prêt pour une rencontre ? Fixons un rendez-vous !</h4>
+		</button>
+	</section>
+
+	<section class="description container mt-3 mb-5">
+		<div class="row ">
+			<div class="col-md-6 align-items-center">
+				<div class="image-container animate__animated animate__backInLeft">
+					<img src="{{ asset('/images/profile.jpeg') }}" alt="Photo de jayson mansuy" class="img-fluid profile-image" data-bs-toggle="modal" data-bs-target="#imageModal">
+				</div>
+			</div>
+			<div class="col-md-6 textInfo ">
+				<div class="text-center mb-5 animate__slow animate__animated animate__backInRight">
+					<h1>À propos de moi</h1>
+				</div>
+				<div class="text-center infoPresentation  animate__slow animate__animated animate__backInRight">
+					<p>
+						Je me présente, l'informatique m'a toujours passionné depuis mon enfance. 
+																																				    À la découverte de nouvelles aventures, j'ai commencé à coder des petits plugins à l'âge de 12 ans. 
+																																				    J'ai grandi en mettant de côté mes rêves, mais en 2023, j'ai finalement décidé de me lancer, de m'instruire 
+																																				    et de suivre une formation chez
+						<a alt="Lien vers le site Beweb" href="https://fondespierre.com/nos-poles-de-competences/beweb-ecole-numerique/developpeur-web/">BeWeb</a>, un centre de formation très réputé.
+					</p>
+				</div>
+				<div class="text-center infoPresentation animate__slower animate__animated animate__backInRight ">
+					<p class="bold">
+						<strong>Titre Professionnel de niveau
+							<span>5</span>(<span>Bac</span>
+							+
+							<span>2</span>) de Développeur
+							<span>Web</span>
+							&
+							<span>Web Mobile</span>
+						</strong>
+					</p>
+				</div>
+				<div class="elementCenter">
+					<a href="{{path('parcourspage')}}" class="btn">
+						En s'avoir plus
+                    </a>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<section class="espace"></section>
+	{% include "models/accueil/modalProfile.html.twig" %}
+	{% include "models/accueil/formulaireContact.html.twig" %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}Mansuy Jayson - Parcours
+{% endblock %}
+
+{% block main %}
+	<section class="container detailsProfile mb-4">
+		<div class="d-flex justify-content-between align-items-center bar">
+			<a href="{{ path('homepage') }}" class="ms-3">RETOUR</a>
+			<h1 class="text-center flex-grow-1">Mon Parcours</h1>
+		</div>
+		<div class="timeline mt-5">
+			<div class="timeline-block mt-3">
+				<h2>Introduction à la Programmation</h2>
+				<p>
+					Mon aventure dans le monde du développement web a débuté le 25 septembre 2023. J'ai commencé par apprendre les bases de la programmation, y compris les langages essentiels que sont le HTML, CSS, et JavaScript.
+				</p>
+			</div>
+			<div class="timeline-block mt-3">
+				<h2>Découverte des Frameworks</h2>
+				<p>
+					Après avoir maîtrisé les fondamentaux, je me suis familiarisé avec des frameworks tels que Bootstrap et Tailwind. J'ai également exploré les bibliothèques comme Animate.css, enrichissant ainsi mon expérience en front-end.
+				</p>
+			</div>
+			<div class="timeline-block mt-3">
+				<h2>Approfondissement avec SCSS et Back-end</h2>
+				<p>
+					L'exploration de SCSS m'a permis de structurer le CSS de manière plus efficace et propre. Par la suite, je me suis plongé dans le développement back-end, en apprenant
+					<strong>Node.js</strong>,
+					<strong>PHP</strong>
+					et
+					<strong>Flutter</strong>, avec une attention particulière portée au framework
+					<strong>Symfony</strong>.
+				</p>
+			</div>
+			<div class="timeline-block mt-3">
+				<h2>Expansion vers Full-Stack</h2>
+				<p>
+					Mon apprentissage s'est étendu aux technologies Full-Stack avec
+					<strong>TypeScript, Angular, et React</strong>, me permettant de gérer à la fois le front-end et le back-end des projets.
+				</p>
+			</div>
+			<div class="timeline-block mt-3">
+				<h2>Gestion de Projets et Collaboration</h2>
+				<p>
+					J'ai acquis des compétences en gestion de projets, allant de la schématisation aux
+					<strong>user stories, user case, MCD, MLD, diagramme de cas d'utilisation, le diagramme de séquence, le diagramme d'activité,</strong>
+					en passant par la création de maquettes pour les clients. J'ai également appris à collaborer efficacement en utilisant
+					<strong>GitLab, GitHub, et Git,</strong>
+					et à améliorer la qualité du code avec
+					<strong>SonarQube</strong>.
+				</p>
+			</div>
+			<div class="timeline-block mt-3">
+				<h2>Projets Pratiques et Évolution</h2>
+				<p>
+					À travers divers projets pratiques, j'ai pu consolider mes connaissances et compétences, préparant ainsi le terrain pour une carrière réussie dans le développement web.
+				</p>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,168 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block main %}
+	
+
+	<div id="loading-screen">
+		<h6>Loading</h6>
+		<span></span>
+	</div>
+
+
+	<div class="container py-5 inscriptionStyle  ">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card shadow-lg ">
+					<div class="card-header mb-3">
+						<h4 class="mb-0 text-center">INSCRIPTION</h4>
+					</div>
+					<div class="card-body  ">
+						{{ form_start(registrationForm, {'attr': {'class': 'form-horizontal', 'id': 'registrationForm', 'novalidate': 'novalidate'}}) }}
+						<div class="form-errors">
+							{% for field in registrationForm  %}
+								{% if field.vars.errors|length %}
+									<div class="form-error errorBtn d-flex">
+										<p>{{ form_errors(field) }} <img src="{{ asset('/images/erreur.png') }}" alt="icon erreur"></p>
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+
+						<div class="form-step form-step-active animate__animated animate__fadeIn">
+							<div class="mb-3 ">
+								{{ form_label(registrationForm.nom) }}
+								{{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+								<div>
+									<h1>{{ form_errors(registrationForm) }}</h1>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between">
+								<a href="{{path('app_login')}}" class="btn button-style">Connexion</a>
+								<button type="button" class="btn button-style next-step">Suivant</button>
+							</div>
+						</div>
+						<div class="form-step animate__animated animate__fadeIn">
+							<div class="mb-3">
+								{{ form_label(registrationForm.prenom) }}
+								{{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+							</div>
+							<div class="d-flex justify-content-between">
+								<button type="button" class="btn button-blanc previous-step">Précédent</button>
+								<button type="button" class="btn button-style next-step ">Suivant</button>
+							</div>
+						</div>
+						<div class="form-step animate__animated animate__fadeIn">
+							<div class="mb-3 ">
+								{{ form_label(registrationForm.plainPassword) }}
+								{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+
+							</div>
+							<div class="d-flex justify-content-between">
+								<button type="button" class="btn button-blanc previous-step">Précédent</button>
+								<button type="button" class="btn button-style next-step">Suivant</button>
+							</div>
+						</div>
+						<div class="form-step animate__animated animate__fadeIn">
+							<div class="mb-3">
+								{{ form_label(registrationForm.email) }}
+								{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+							</div>
+							<div class="d-flex justify-content-between">
+								<button type="button" class="btn button-blanc previous-step">Précédent</button>
+								<button type="button" class="btn button-style next-step">Suivant</button>
+							</div>
+						</div>
+						<div class="form-step animate__animated animate__fadeIn">
+							<div class="mb-3">
+								{{ form_label(registrationForm.tel) }}
+								{{ form_widget(registrationForm.tel, {'attr': {'class': 'form-control'}}) }}
+							</div>
+							<div class="d-flex justify-content-between">
+								<button type="button" class="btn button-blanc previous-step">Précédent</button>
+								<button type="button" class="btn button-style next-step">Suivant</button>
+							</div>
+						</div>
+						<!-- Répéter pour les autres champs... -->
+						<div class="form-step animate__animated animate__fadeIn">
+							<div class="mb-3 form-check">
+								{{ form_widget(registrationForm.agreeTerms) }}
+								{{ form_label(registrationForm.agreeTerms, 'J\'accepte les termes et conditions') }}
+                            </div>
+                              <div class="d-flex justify-content-between">
+                            <button type="button" class="btn button-blanc previous-step">Précédent</button>
+                            <button type="submit" class="btn button-style">S'inscrire</button>
+                            </div>
+                        </div>
+                    {{ form_end(registrationForm) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+													document.addEventListener('DOMContentLoaded', function () {
+									const loadingScreen = document.getElementById('loading-screen');
+									const formContainer = document.querySelector('.inscriptionStyle');
+									const steps = document.querySelectorAll('.form-step');
+									let currentStep = 0;
+									
+									function showStep(step) {
+									steps.forEach((s, index) => {
+									s.style.display = index === step ? 'block' : 'none';
+									});
+									}
+									
+									// Nouvelle fonction pour passer à l'étape suivante
+									function goToNextStep() {
+									const inputs = steps[currentStep].querySelectorAll('input, select, textarea');
+									let isValid = Array.from(inputs).every(input => input.checkValidity());
+									
+									if (! isValid) {
+									inputs.forEach(input => {
+									input.reportValidity();
+									});
+									return;
+									}
+									
+									if (currentStep < steps.length - 1) {
+									currentStep++;
+									showStep(currentStep);
+									}
+									}
+									
+									// Ajout de l'écouteur pour la touche "Entrée"
+									steps.forEach(step => {
+									step.addEventListener('keypress', function (e) {
+									if (e.keyCode === 13) {
+									e.preventDefault(); // Prévenir le comportement par défaut de la touche "Entrée"
+									goToNextStep();
+									}
+									});
+									});
+									
+									document.querySelectorAll('.next-step').forEach(button => {
+									button.addEventListener('click', goToNextStep);
+									});
+									
+									document.querySelectorAll('.previous-step').forEach(button => {
+									button.addEventListener('click', () => {
+									if (currentStep > 0) {
+									currentStep--;
+									showStep(currentStep);
+									}
+									});
+									});
+									
+									setTimeout(() => {
+									loadingScreen.style.display = 'none';
+									formContainer.style.display = 'block';
+									showStep(currentStep);
+									}, 1500);
+									});
+												</script>
+
+		{% endblock %}

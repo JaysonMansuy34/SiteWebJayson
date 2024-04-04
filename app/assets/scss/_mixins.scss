@@ -1,0 +1,81 @@
+@mixin media-mobile {
+  @media (max-width: 991.3px) {
+    @content;
+  }
+}
+
+@mixin media-mobile-phone {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media-tablette-phone {
+  @media (max-width: 940px) {
+    @content;
+  }
+}
+
+@mixin glass-morpe {
+  background: rgba(50, 49, 49, 0.54);
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.304);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+}
+
+@mixin button-style {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: $textSize;
+  font-weight: $boldMin;
+  color: $white-colorP;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 0.25em;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
+
+@mixin button-valider {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: $textSize;
+  font-weight: $boldMin;
+  color: $dark-color;
+  background-color: $white-color;
+  border: none;
+  border-radius: 0.25em;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    transition: background-color 0.3s;
+    background-color: $hover-color;
+    color: $white-colorP;
+  }
+}
+
+@mixin elementCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+@mixin button-error {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: $textSize;
+  font-weight: $boldMin;
+  color: $primary-color;
+  text-align: center;
+  transition: background-color 0.3s;
+}

@@ -1,0 +1,39 @@
+<!-- Structure du modal -->
+<div class="modalFormulaireContact ">
+	<div class="modal animate__animated animate__slideInUp fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content ">
+				<div class="modal-header d-flex justify-content-center">
+					<h4 class="modal-title" id="contactModalLabel">Vos attentes</h4>
+					<button type="button" class=" btn position-absolute end-0 me-2" data-bs-dismiss="modal" aria-label="Close">
+						<img src="{{ asset('/images/close.svg') }}" alt="fermer le formulaire">
+					</button>
+				</div>
+				<div class="modal-body">
+					<form class="contact-form">
+						<div class="row">
+							<div class="col-md-6 formulaireContactInfo">
+								<label for="name" class="visually-hidden">Nom</label>
+								<input type="text" id="name" class="form-control mb-3" placeholder="Votre nom"/>
+
+								<label for="email" class="visually-hidden">Email</label>
+								<input type="email" id="email" class="form-control mb-3" placeholder="Votre email"/>
+
+								<label for="tel" class="visually-hidden">Tel</label>
+								<input type="number" id="tel" class="form-control mb-3" placeholder="Numéro de tel"/>
+							</div>
+							<div class="col-md-6">
+								<label for="message" class="visually-hidden">Message</label>
+								<textarea id="message" class="form-control" placeholder="Votre message, exemple: Vos attentes,"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="buttonFermer" data-bs-dismiss="modal">Fermer</button>
+					<button type="submit" class="buttonValider">Envoyer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

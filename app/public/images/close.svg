@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>close-svg</title>
+	<defs>
+		<image  width="16" height="16" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAAXNSR0IB2cksfwAAAMNQTFRF4Bcr4Bcr4BcrAAAA4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcr4Bcryrs2SAAAAEF0Uk5T//12AD/87flDO/QI2GZV940OY0mKIO9W+Iws6RP2nxfbxLL+jxJ5PftfFeb1PCTr+ilIcU06R+5biDdPGvNrQVyduV7mAAAAz0lEQVR4nD3P30uDcBQF8HMQ9UFwErGKjcHSaJAP/XjJjbG/fbiH2hgUVEggBSINjYmxfJiBXcT5fTsfLvd7LkESh0eW1PY6yyZrLECDO10r6mwwh0XFzKAbuWTrp8RxRgVHKbr8hmptcJZAACdfVU82RRjEqAF9fg7lL36gAZzHsv4iRAsOA4z43sIlXztl4fKtgSs+X5N56OpPNdysKzv9xW20kRoCd3zE/UqGVTOBt+R4G9inD3V1j/6oS/cFs0VznPMXSh114rfnT+fVP6zqOn5oCboqAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Calque 1" href="#img1" x="4" y="2"/>
+</svg>
