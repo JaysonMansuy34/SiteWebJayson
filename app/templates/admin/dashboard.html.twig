@@ -1,0 +1,39 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}ADMIN DASHBOARD
+{% endblock %}
+
+{% block section %}
+	<h1 class="text-center mt-3">DASHBOARD INFORMATION</h1>
+
+	<div class="container mt-5">
+		<div class="row">
+
+			<div class="col-md-12 my-3">
+				<h2>Derniers avis</h2>
+				<ul class="list-group">
+					{% for avis in lastThreeAvis %}
+						<li class="list-group-item">
+							<strong>{{ avis.user.nom }}:</strong>
+							{{ avis.message }}
+							-
+							{{ avis.note }}/5
+							<br>
+							<small>Posté le
+								{{ avis.createdAt|date('d/m/Y H:i') }}</small>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<div class="card text-white bg-primary mb-3">
+					<div class="card-header">Utilisateurs</div>
+					<div class="card-body">
+						<h5 class="card-title">Nombre d'utilisateurs:
+							{{ userCount }}</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

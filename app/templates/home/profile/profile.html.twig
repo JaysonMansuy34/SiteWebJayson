@@ -1,0 +1,87 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}Profil de
+	{{ user.nom }}
+{% endblock %}
+
+{% block main %}
+	<div class="container my-5 profileUser">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="profile-header text-center py-4">
+					<h1>Profil de
+						{{ user.prenom }}
+						{{ user.nom }}</h1>
+				</div>
+				<div class="card mt-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-4 d-flex justify-content-center align-items-center mb-3" style="height: 100%;">
+								<img src="{{ asset('/images/profile.jpeg') }}" alt="Profile image" class="img-fluid">
+							</div>
+							<div class="col-md-8">
+								<h2 class="card-title mt-3">{{ user.prenom }}
+									{{ user.nom }}</h2>
+								<p class="card-text">
+									<strong>Email:</strong>
+									{{ user.email }}</p>
+								<p class="card-text">
+									<strong>Téléphone:</strong>
+									{{ user.tel }}</p>
+								<p class="card-text test">
+									<strong>
+										{% if user.validate %}
+											Compte : </span>validé </span>
+										{% else %}
+											Compte non validé : <a href="{{ path('resend_verif') }}"> </span> cliquez ici</span></a>
+										{% endif %}
+									</strong>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mt-4">
+					<div class="card-header">
+						<h3>Modifier vos informations</h3>
+					</div>
+					<div class="card-body">
+						{{ form_start(form) }}
+						<div class="form-group">
+							{{ form_label(form.nom) }}
+							{{ form_widget(form.nom) }}
+							{{ form_errors(form.nom) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.prenom) }}
+							{{ form_widget(form.prenom) }}
+							{{ form_errors(form.prenom) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.email) }}
+							{{ form_widget(form.email) }}
+							{{ form_errors(form.email) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.tel) }}
+							{{ form_widget(form.tel) }}
+							{{ form_errors(form.tel) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.currentPassword) }}
+							{{ form_widget(form.currentPassword) }}
+							{{ form_errors(form.currentPassword) }}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.newPassword) }}
+							{{ form_widget(form.newPassword) }}
+							{{ form_errors(form.newPassword) }}
+						</div>
+						<button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

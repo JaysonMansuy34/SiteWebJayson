@@ -1,0 +1,21 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}COMPTE VERIFICATION{% endblock %}
+
+{% block main %}
+    <div class="container my-5 ">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card verification">
+                    <div class="card-body text-center">
+                        <h1 class=" text-center my-5">Félicitations, votre compte a été validé !</h1>
+                        <p>Votre inscription sur notre site est maintenant complète et vous pouvez profiter de tous nos services.</p>
+                        <a href="{{ path('homepage') }}" class="btn btn-primary mt-4">
+                            Cliquer ici pour retourner à la page d'accueil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

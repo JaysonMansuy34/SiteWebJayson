@@ -1,0 +1,135 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}Mansuy Jayson - Avis
+{% endblock %}
+
+{% block main %}
+
+	<div class="container" id="avisClient">
+
+		<div class="container mt-5 form-avis">
+			<h1 class="text-center" >Poster un avis</h1>
+			<p class="fondBold">
+				Moyenne :
+				<span class="star-rating">
+					{% set roundedRating = averageRating|round(0, 'common') %}
+					{% for i in 1..5 %}
+						{% if i <= roundedRating %}
+							<span class="star">&#9733;</span>
+							{# Étoile pleine #}
+						{% else %}
+							<span class="star star-empty">&#9734;</span>
+							{# Étoile vide #}
+						{% endif %}
+					{% endfor %}
+				</span>
+			</p>
+
+			{% if app.user and not existingAvis %}
+				{{ form_start(form, {'attr': {'class': 'form-avis fondBold'}}) }}
+				{{ form_row(form.message, {
+            'attr': {
+                'class': 'form-control mt-3',
+                'placeholder': 'Vous pouvez noter le site, la prestation, ou partager votre expérience suite à notre rencontre ou appel.'
+            }
+        }) }}
+				<div>
+					<label for="avis_note" class=" mt-3">Votre note :</label>
+					<div class="star-rating-input">
+						{% for i in 1..5 %}
+							<span class="star" data-value="{{ i }}">&#9733;</span>
+						{% endfor %}
+					</div>
+				</div>
+				{{ form_row(form.note, {'attr': {'class': 'd-none'}}) }}
+				<button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+				{{ form_end(form) }}
+			{% elseif app.user and existingAvis %}
+				<p>Vous avez déjà laissé un avis.</p>
+			{% else %}
+				<p class="text-center">Vous devez être connecté pour laisser un avis.</p>
+				<div class="text-center">
+					<a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+					<a href="{{ path('app_register') }}" class="btn btn-secondary">S'inscrire</a>
+				</div>
+			{% endif %}
+		</div>
+		<div class="container mt-5 mb-5 form-avis">
+			<h2 class="text-center">Avis des clients</h2>
+			{% if avisList|length > 0 %}
+				<div class="row">
+					{% for avis in avisList %}
+						<div class="row-12 my-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+										<h5 class="card-title mb-3 mb-md-0">{{ avis.user.nom }}
+											{{ avis.user.prenom }}</h5>
+										<div class="star-rating">
+											{% for i in 1..5 %}
+												{% if i <= avis.note %}
+													<span class="star">&#9733;</span>
+												{% else %}
+													<span class="star star-empty">&#9734;</span>
+												{% endif %}
+											{% endfor %}
+										</div>
+									</div>
+
+									<p class="card-text"><span class="fondBold">Avis :</span>
+										{{ avis.message }}</p>
+									<p class="card-text">
+										<small class="text-muted">Posté le
+											{{ avis.createdAt|date('d/m/Y') }}</small>
+									</p>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="text-center">
+					<p class="fs-4">Aucun avis pour le moment. Soyez le premier à donner votre avis sur le site !</p>
+					{% if app.user %}
+						<a href="#avisClient" class="btn btn-primary mt-3">Donner un avis</a>
+					{% else %}
+						<p>
+							<a href="{{ path('app_login') }}">Connectez-vous</a>
+							pour laisser un avis.</p>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const stars = document.querySelectorAll('.star-rating-input .star');
+const noteInput = document.querySelector('#avis_note');
+
+if (noteInput) {
+let currentRating = noteInput.value || 0; // Utiliser 0 comme valeur par défaut si noteInput.value est undefined
+
+function highlightRating(rating) {
+stars.forEach(star => {
+star.style.color = star.dataset.value<= rating ? '#ff0101' : '#0d0d0d';
+            });
+        }
+
+        function setRating(rating) {
+            currentRating = rating;
+            noteInput.value = rating;
+            highlightRating(rating);
+        }
+
+        stars.forEach(star => {
+star.addEventListener('click', () => setRating(star.dataset.value));
+star.addEventListener('mouseover', () => highlightRating(star.dataset.value));
+star.addEventListener('mouseout', () => highlightRating(currentRating));
+}
+);
+}
+}
+);
+
+</script>
+			{% endblock %}

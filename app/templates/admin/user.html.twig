@@ -1,0 +1,108 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}ADMIN UTILISATEUR
+{% endblock %}
+
+{% block section %}
+	<h1 class="text-center mt-3">INFORMATION UTILISATEUR</h1>
+
+	<div class="container my-3">
+		<div class="card">
+			<div class="card-body">
+				<table id="usersTable" class="table">
+					<thead>
+						<tr class="text-center">
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Email</th>
+							<th>Tel</th>
+							<th>Modifier</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr class="text-center">
+								<td>{{ user.nom }}</td>
+								<td>{{ user.prenom }}</td>
+								<td>{{ user.email }}</td>
+								<td>{{ user.tel }}</td>
+								<td><a href="{{ path('admin_user_edit', {'id': user.id}) }}">Edit</a></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation">
+					<ul
+						id="pagination" class="pagination"><!-- Les boutons de pagination seront ajoutés ici par JavaScript -->
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const rowsPerPage = 10;
+    const table = document.getElementById('usersTable');
+    const pagination = document.getElementById('pagination');
+    const rows = table.querySelectorAll('tbody tr');
+    const rowsCount = rows.length;
+    const pageCount = Math.ceil(rowsCount / rowsPerPage);
+    let currentPage = 1;
+
+    function displayPage(page) {
+        currentPage = page;
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+        });
+        updatePaginationButtons();
+    }
+
+    function updatePaginationButtons() {
+        pagination.innerHTML = '';
+
+        const createPageItem = (page, active = false) => {
+            const li = document.createElement('li');
+            li.className = `page-item ${active ? 'active' : ''}`;
+            const a = document.createElement('a');
+            a.className = 'page-link';
+            a.href = '#';
+            a.textContent = page;
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                displayPage(page);
+            });
+            li.appendChild(a);
+            return li;
+        };
+
+        // Première page
+        pagination.appendChild(createPageItem(1, currentPage === 1));
+
+        if (currentPage > 2) {
+            pagination.appendChild(document.createTextNode('...'));
+        }
+
+        const startPage = Math.max(2, currentPage - 1);
+        const endPage = Math.min(pageCount - 1, currentPage + 1);
+        for (let i = startPage; i <= endPage; i++) {
+            pagination.appendChild(createPageItem(i, i === currentPage));
+        }
+
+        if (currentPage < pageCount - 1) {
+            pagination.appendChild(document.createTextNode('...'));
+        }
+
+        if (pageCount > 1) {
+            pagination.appendChild(createPageItem(pageCount, currentPage === pageCount));
+        }
+    }
+
+    displayPage(1);
+});
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Demande de rendez-vous</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #040F0F;
+            background-color: #ffffff;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            border: 1px solid #e0172b;
+        }
+        .header {
+            background-color: #e0172b;
+            color: #ffffff;
+            padding: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #040F0F;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Demande de rendez-vous</h1>
+        </div>
+        <div class="content">
+            <p>Bonjour {{ contact.nom }},</p>
+            <p>Nous avons bien reçu votre demande de rendez-vous et nous vous en remercions.</p>
+            <p>Votre message : "{{ contact.message }}"</p>
+            <p>Nous vous contacterons très prochainement pour confirmer la date et l'heure de notre rencontre.</p>
+            <p>Cordialement,</p>
+            <p>Jayson Mansuy</p>
+        </div>
+        <div class="footer">
+            © {{ "now"|date("Y") }} Jayson Mansuy - Tous droits réservés
+        </div>
+    </div>
+</body>
+</html>

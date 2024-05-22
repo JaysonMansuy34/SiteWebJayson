@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
 	<nav class="navbar navbar-expand-lg background fixed-top sticky-top">
 		<div class="container-fluid ">
@@ -17,11 +18,17 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link custom-hover animate__slower animate__animated animate__backInRight" aria-current="page" title="PRÉSENTATION" href="{{ path('homepage') }}">PRÉSENTATION</a>
+						{% if is_granted('ROLE_ADMIN') and app.request.pathInfo starts with '/admin' %}
+							<a href="#" class="nav-link custom-hover" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+								Administration
+							</a>
+						{% else %}
+							<a class="nav-link custom-hover animate__slower animate__animated animate__backInRight" aria-current="page" href="{{ path('homepage') }}">PRÉSENTATION</a>
+						{% endif %}
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle tempsOne animate__animated animate__backInRight" href="#" role="button" title="LANGAGE" data-bs-toggle="dropdown" aria-expanded="false">
-							LANGAGE
+						<a class="nav-link dropdown-toggle tempsOne animate__animated animate__backInRight" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							TARIFS
 						</a>
 						<ul class="dropdown-menu animate__animated animate__backInDown">
 							<li>
@@ -37,7 +44,7 @@
 						</ul>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active custom-hover animate__animated animate__backInRight" title="PROJET" href="#">PROJET</a>
+						<a class="nav-link active custom-hover animate__animated animate__backInRight" href="{{path('avisClient')}}">AVIS</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle animate__animated animate__backInRight" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,11 +58,11 @@
 							{% if app.user %}
 								{% if is_granted('ROLE_ADMIN') %}
 									<li>
-										<a class="dropdown-item" href="#">Administration</a>
+										<a class="dropdown-item" href="{{path('dashboard')}}">Administration</a>
 									</li>
 								{% endif %}
 								<li>
-									<a class="dropdown-item" href="#">Profil</a>
+									<a class="dropdown-item" href="{{ path('profile', {'nom': app.user.nom}) }}">Profil</a>
 								</li>
 								<li>
 									<a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -75,7 +82,7 @@
 		</div>
 	</nav>
 	{% include 'models/addFlash/errorModal.html.twig' %}
-	
+
 
 	<div class="content">
 		{% block main %}{% endblock %}
@@ -113,25 +120,25 @@
 					</div>
 					<div class="col-md-12">
 						<div class="text-center">
-							<h5>Navigation</h5>
+							<h6>Navigation</h5>
 						</div>
 
 						<div class="d-flex justify-content-evenly hover-footer">
 							<p>
 								<a href="#">
-									<span>PROJET
+									<span>TARIFS
 									</span>
 								</a>
 							</p>
 							<p>
-								<a href="#">
-									<span>LANGAGE
+								<a href="{{path('avisClient')}}">
+									<span>AVIS
 									</span>
 								</a>
 							</p>
 							<p>
-								<a href="#">
-									<span>Connexion
+								<a href="{{path('app_login')}}">
+									<span>CONNEXION
 									</span>
 								</a>
 							</p>
@@ -154,4 +161,5 @@
 			<button onclick="topFunction()" id="myBtn" title="Retour en haut" class="btn-to-top">↑</button>
 		</footer>
 	{% endblock %}
+
 {% endblock %}

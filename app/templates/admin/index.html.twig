@@ -1,0 +1,56 @@
+{% extends 'components/navigation.html.twig' %}
+
+{% block title %}Administration
+{% endblock %}
+
+{% block main %}
+	<div class="admin">
+
+		{% block section %}
+		{% endblock %}
+
+
+	</div>
+
+
+	<div class="offcanvas offcanvas-start sidebarAdmin" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel"><img src="{{ asset('/images/logo.svg') }}" alt="logo du site"></h5>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div>
+				{% if app.user %}
+					<p>ADMIN
+						{{ app.user.nom|upper }}</p>
+				{% endif %}
+
+			</div>
+			<div class="mt-3">
+				<a class="btn btn-secondary" href="{{path('dashboard')}}">
+					DASHBOARD
+				</a>
+			</div>
+			<div class="mt-3">
+				<a class="btn btn-secondary" href="{{path('admin_user')}}">
+					UTILISATEUR
+				</a>
+			</div>
+			<div class="mt-3">
+				<a class="btn btn-secondary" href="#">
+					BILAN
+				</a>
+			</div>
+			<div class="mt-3">
+				<a class="btn btn-secondary" href="{{ path('homepage') }}">
+					RETOUR SITE
+				</a>
+			</div>
+			<div class="mt-3">
+				<a class="btn btn-secondary" href="{{ path('app_logout') }}">
+					DECONNEXION
+				</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

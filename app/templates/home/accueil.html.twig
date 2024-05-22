@@ -5,11 +5,13 @@
 
 {% block main %}
 
-	<section class="sectionPresentation">
+	<section class="sectionPresentation d-flex flex-column align-items-center">
+		<h1 class="titleSite text-center">Création de votre site professionnel</h1>
 		<button type="button" class="btn-contacter btn" data-bs-toggle="modal" data-bs-target="#contactModal">
-			<h4>Prêt pour une rencontre ? Fixons un rendez-vous !</h4>
+			Prêt pour une rencontre ? Fixons un rendez-vous !
 		</button>
 	</section>
+
 
 	<section class="description container mt-3 mb-5">
 		<div class="row ">
@@ -25,9 +27,9 @@
 				<div class="text-center infoPresentation  animate__slow animate__animated animate__backInRight">
 					<p>
 						Je me présente, l'informatique m'a toujours passionné depuis mon enfance. 
-																																				    À la découverte de nouvelles aventures, j'ai commencé à coder des petits plugins à l'âge de 12 ans. 
-																																				    J'ai grandi en mettant de côté mes rêves, mais en 2023, j'ai finalement décidé de me lancer, de m'instruire 
-																																				    et de suivre une formation chez
+																																																						    À la découverte de nouvelles aventures, j'ai commencé à coder des petits plugins à l'âge de 12 ans. 
+																																															    J'ai grandi en mettant de côté mes rêves, mais en 2023, j'ai finalement décidé de me lancer, de m'instruire 
+																																																						    et de suivre une formation chez
 						<a alt="Lien vers le site Beweb" href="https://fondespierre.com/nos-poles-de-competences/beweb-ecole-numerique/developpeur-web/">BeWeb</a>, un centre de formation très réputé.
 					</p>
 				</div>
@@ -46,15 +48,13 @@
 				<div class="elementCenter">
 					<a href="{{path('parcourspage')}}" class="btn">
 						En s'avoir plus
-                    </a>
+					</a>
 				</div>
 
 			</div>
 		</div>
 	</section>
 
-
-	<section class="espace"></section>
 	{% include "models/accueil/modalProfile.html.twig" %}
-	{% include "models/accueil/formulaireContact.html.twig" %}
+	{% include 'models/accueil/formulaireContact.html.twig' with {'contactForm': contactForm} %}
 {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Modifier l'utilisateur{% endblock %}
+
+{% block section %}
+    <div class="container my-5">
+        <a href="{{ path('admin_user') }}" class="btn btn-danger">Retour</a>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        Modifier l'utilisateur
+                        <a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-danger float-end" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                        <div class="mb-3">
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.nom) }}
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.nom) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.prenom) }}
+                            {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.prenom) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.tel) }}
+                            {{ form_widget(form.tel, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.tel) }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

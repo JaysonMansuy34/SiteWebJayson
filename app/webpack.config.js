@@ -68,7 +68,7 @@ Encore
         includeSubdirectories: true
     })
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
     
     // uncomment if you use React
     //.enableReactPreset()
@@ -78,7 +78,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

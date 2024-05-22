@@ -1,6 +1,8 @@
 @import "bootstrap";
 @import "_mixins";
 @import "_variables";
+@import "models";
+@import "~bootstrap/scss/bootstrap";
 
 * {
   font-family: "Poppins", sans-serif;
@@ -35,7 +37,9 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 
+  
   .content {
     flex: 1 0 auto;
   }
@@ -98,7 +102,7 @@ body {
       position: relative;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition: all 0.7s ease-in-out; // Transition pour un changement de couleur en douceur
+      transition: all 0.7s ease-in-out;
     }
 
     .nav-link::before {
@@ -122,7 +126,7 @@ body {
         $secondary-color 90%,
         $white-color 50%
       );
-      background-position: 0%; // Décale le gradient pour le remplissage complet
+      background-position: 0%;
 
       &::before {
         transform-origin: left;
@@ -242,7 +246,7 @@ body {
     position: relative;
     height: 25em;
     width: 100%;
-    background-image: url("../imgGeneral/accueil.svg");
+    background-image: url("../imgGeneral/accueil.avif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -259,6 +263,25 @@ body {
       right: 0;
       bottom: 0;
       background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .titleSite {
+      padding: $paddingAll;
+      font-size: 3rem;
+      color: $white-colorP;
+      z-index: 1000;
+      border-radius: 10%;
+      transition: 1s ease-in-out;
+
+      @include media-tablette-phone {
+        transition: 1s ease-in-out;
+        font-size: 2rem;
+      }
+
+      @include media-mobile-phone {
+        transition: 1s ease-in-out;
+        text-align: center;
+      }
     }
 
     .btn-contacter {
@@ -294,9 +317,9 @@ body {
     }
 
     input[type="number"] {
-      appearance: textfield; // Standard
-      -moz-appearance: textfield; // Firefox
-      -webkit-appearance: none; // Chrome, Safari, et autres navigateurs WebKit
+      appearance: textfield;
+      -moz-appearance: textfield;
+      -webkit-appearance: none;
     }
 
     .modal {
@@ -321,7 +344,7 @@ body {
         border-top: $line-top;
       }
       textarea {
-        min-height: 9em;
+        min-height: 13.4em;
         max-height: 20em;
         resize: vertical;
 
@@ -354,6 +377,7 @@ body {
       overflow: hidden;
       border-radius: 8px;
       box-shadow: $boxShadowUp;
+      cursor: pointer;
 
       .profile-image {
         transition: transform 0.3s ease;
@@ -423,7 +447,7 @@ body {
 
       a {
         @include button-style;
-        text-decoration-line: none;
+        text-decoration: none;
       }
     }
 
@@ -438,6 +462,7 @@ body {
     }
 
     p {
+      color: $dark-color;
       font-weight: $boldMin;
     }
 
@@ -449,10 +474,25 @@ body {
         text-align: center;
       }
     }
+
+    .tilt-card {
+      background-color: rgba(7, 7, 7, 0.116);
+      transform-style: preserve-3d;
+
+      &:hover {
+        transform: rotateY(50deg) rotateX(50deg);
+      }
+    }
+
+    .card {
+      &:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
   }
 }
 
-// PAGE CONNEXION & INSCRIPTION
+// PAGE INSCRIPTION LAODING
 
 #loading-screen {
   display: flex;
@@ -536,8 +576,13 @@ body {
 // FORMULAIRE D'INSCRIPTION
 .inscriptionStyle {
   display: none;
-  height: 70vh;
+  height: 100%;
   background-color: none;
+  height: 70vh;
+
+  .card {
+    border: 0;
+  }
   .card-header {
     background-color: $primary-color;
     color: $white-colorP;
@@ -556,7 +601,7 @@ body {
       border-radius: 0;
       border: 0;
       color: $dark-color;
-      box-shadow: 0 10px 12px -9px rgba(253, 3, 3, 0.68); // Ajustez les valeurs selon le besoin
+      box-shadow: 0 10px 12px -9px rgba(253, 3, 3, 0.68);
 
       &::placeholder {
         color: $dark-color;
@@ -572,13 +617,13 @@ body {
         color: $white-colorP;
       }
     }
-    
+
     .errorBtn {
       @include button-error;
 
       li {
-        list-style-type: none; /* Cela retire les petits points des éléments <li> */
-        text-decoration: none; /* Cela retire le soulignement du texte, si nécessaire */
+        list-style-type: none;
+        text-decoration: none;
       }
 
       img {
@@ -591,5 +636,372 @@ body {
     .button-style {
       @include button-style;
     }
+  }
+}
+
+// FORMULAIRE DE CONNEXION
+
+.form-card {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.54);
+  border-radius: 0.5rem;
+
+  label {
+    font-weight: $bold;
+    color: $primary-color-plus;
+  }
+
+  .form-header {
+    font-weight: $bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $primary-color;
+  }
+
+  .form-control {
+    background-color: $input-background;
+    border: none;
+    border-bottom: 0;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.9s ease;
+
+    &:hover {
+      background-color: rgba(167, 167, 167, 0.673);
+    }
+
+    &:focus {
+      background-color: rgba(212, 209, 209, 0.7);
+      border: none;
+      border-bottom: 0;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: $bold;
+    border: none;
+
+    &-primary {
+      background-color: $primary-color;
+      color: $white-color;
+      &:hover {
+        background-color: $secondary-color;
+        color: $white-colorP;
+      }
+    }
+
+    &-secondary {
+      background-color: $dark-color;
+      color: $white-color;
+    }
+  }
+
+  .link-forgot-password {
+    color: $primary-color;
+    text-decoration: underline;
+  }
+}
+
+// Bard pour loading connexion
+.chart {
+  background: rgba(255, 255, 255, 0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 40px;
+  width: 500px;
+}
+.chart span {
+  margin-left: 5px;
+  color: $primary-color-plus;
+  font-weight: $bold;
+}
+
+.barload {
+  animation: load 7s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+
+  border-radius: 100px;
+  background: $primary-color-plus;
+  height: 30px;
+  width: 0;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+// AVIS
+
+.star-rating {
+  color: #ff0101; // Couleur des étoiles (or typiquement pour les notations)
+  display: inline-block;
+  font-size: 25px;
+
+  .star {
+    font-size: 25px;
+    line-height: 1;
+    border-color: black;
+    margin-left: 1rem;
+  }
+
+  .star-empty {
+    color: #0f0f0f; // Couleur des étoiles vides (gris clair par exemple)
+    font-size: 25px;
+  }
+}
+
+.form-avis {
+  background-color: $white-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px $primary-color-blur;
+
+  .fondBold {
+    font-weight: 700;
+  }
+
+  .star-rating .star,
+  .star-rating-input .star {
+    font-size: 24px; /* Ajustez la taille ici */
+    cursor: pointer;
+    color: #ff0101;
+  }
+
+  .star-rating .star-empty {
+    color: #0d0d0d;
+  }
+
+  .star-rating-input .star {
+    font-size: 30px; /* Taille des étoiles dans le formulaire */
+  }
+  textarea#avis_message {
+    height: 6rem;
+    max-height: 10rem;
+  }
+  h1 {
+    color: $dark-color;
+  }
+
+  .btn-primary {
+    background-color: $primary-color;
+    border-color: $secondary-color;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+
+  .form-control {
+    border-color: $primary-color;
+
+    &:focus {
+      border-color: $secondary-color;
+      box-shadow: 0 0 0 0.2rem rgba(104, 13, 13, 0.25);
+    }
+  }
+
+  label {
+    color: $dark-color;
+  }
+}
+
+// PROFILE UTILISATEUR
+
+.profileUser {
+  .profile-header {
+    background-color: $primary-color;
+    color: $white-color;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px $primary-color-blur;
+  }
+
+  .card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: none;
+    margin-top: -50px; // Pour chevaucher le header
+    overflow: hidden; // Ajouté pour s'assurer que rien ne dépasse
+
+    &-header {
+      background-color: $primary-color;
+      color: $white-color;
+    }
+
+    &-body {
+      padding: 2rem;
+    }
+  }
+
+  .card-title {
+    color: $primary-color;
+  }
+  .test {
+      span {
+        font-weight: 400;
+        color: $dark-color;
+        outline: none;
+        text-decoration: none;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    a,span {
+      font-weight: 400;
+      color: $dark-color;
+      outline: none;
+      text-decoration: none;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  .card-text {
+    font-size: 1rem;
+    strong {
+      color: $primary-color;
+    }
+  }
+
+  img.img-fluid {
+    border-radius: 50%;
+    max-width: 200px;
+    border: 5px solid $white-color;
+    box-shadow: 0px 14px 13px rgba(0, 0, 0, 0.31);
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+    ul {
+      margin: 1rem;
+      padding: 0;
+    }
+
+    label {
+      color: $dark-color;
+      margin-bottom: 0.5rem;
+      font-weight: $bold;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      border: 0;
+      border-bottom: 2px solid $primary-color;
+      border-radius: 0;
+      box-shadow: none;
+
+      &:hover {
+        border: 0;
+        border-bottom: 2px solid $primary-color;
+        box-shadow: none;
+        background-color: rgba(201, 200, 200, 0.888);
+        border-radius: 10px 10px 0 0;
+      }
+      &:focus {
+        outline: none;
+        border: 0;
+        border-bottom: 2px solid $primary-color;
+        border-color: 0;
+        box-shadow: none;
+        background-color: rgba(187, 184, 184, 0.888);
+        border-radius: 10px 10px 0 0;
+      }
+    }
+  }
+
+  button.btn-primary {
+    color: $white-color;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// addFash
+
+.btn-close:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+
+// ADMIN
+.admin {
+
+  .btn-primary {
+    color: $white-colorP;
+    background-color: $dark-color;
+    border: 0;
+    width: 100%;
+    border-radius: 0;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+.sidebarAdmin {
+  p {
+    font-weight: $bold;
+  }
+
+  .btn-secondary {
+    color: $white-colorP;
+    background-color: $primary-color;
+    border: 0;
+    width: 100%;
+    border-radius: 0;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+}
+.offcanvas.offcanvas-start {
+  width: 250px;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  ul.dropdown-menu.show {
+    margin: 1rem;
+  }
+  .dropdown-menu.show {
+    width: 100%;
+  }
+}
+
+
+// USER ADMIN
+
+
+
+// Page Verification mail 
+
+.verification {
+  box-shadow: 0px 1px 20px 11px #00000036;
+
+  .btn-primary {
+    @include button-style;
   }
 }

@@ -4,18 +4,15 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class AdminTypeUser extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -67,33 +64,6 @@ class RegistrationFormType extends AbstractType
                 new Length(['max' => 15, 'maxMessage' => 'Votre numéro de téléphone doit comporter au maximum 15 chiffres']),
             ],
             'label' => 'Numéro de téléphone', // Ajoutez ou modifiez le label si nécessaire
-        ])
-        ->add('agreeTerms', CheckboxType::class, [
-            'mapped' => false,
-            'required' => true,
-            'constraints' => [
-                new IsTrue([
-                    'message' => 'Vous devez accepter les termes.',
-                ]),
-            ],
-            'label' => 'J\'accepte les termes et conditions'
-        ])
-        ->add('plainPassword', PasswordType::class, [
-            'mapped' => false,
-            'attr' => [
-                'autocomplete' => 'new-password',
-                'placeholder' => 'Votre mot de passe'
-            ],
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Entrez un mot de passe',
-                ]),
-                new Length([
-                    'min' => 6,
-                    'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
-                    'max' => 255,
-                ]),
-            ],
         ])
     ;
 }

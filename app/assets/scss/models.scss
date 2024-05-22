@@ -1,0 +1,21 @@
+@import "bootstrap";
+@import "_mixins";
+@import "_variables";
+
+
+.form-error-message, .invalid-feedback, ul {
+    color: $primary-color-plus; 
+    list-style-type: none;
+  }
+  
+  
+  .modal-body {
+
+    ul {
+        padding: 0;
+    }
+    label {
+        margin-bottom: 10px;
+      color: $white-colorP;
+    }
+  }

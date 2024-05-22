@@ -13,6 +13,8 @@
         "sass": "^1.72.0",
         "sass-loader": "^14.1.1",
         "style-loader": "^3.3.4",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.4.4",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
         "webpack-notifier": "^1.15.0"
@@ -27,6 +29,10 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.8",
-        "bootstrap": "^5.3.3"
+        "aos": "^2.3.4",
+        "bootstrap": "^5.3.3",
+        "jquery": "^3.7.1",
+        "tilt.js": "^1.2.1",
+        "vanilla-tilt": "^1.8.1"
     }
 }
